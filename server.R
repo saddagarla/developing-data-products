@@ -1,7 +1,8 @@
 # server.R
 
+require(downloader)
 library(quantmod)
-source("helpers.R")
+source("helpers.R",local=TRUE)
 
 
 shinyServer(function(input, output) {
@@ -9,8 +10,10 @@ shinyServer(function(input, output) {
   
     # Download the data from FRED2 database
     dataInput <- reactive({
-      getSymbols(slist[as.numeric(input$select)], src = "FRED",
-                 auto.assign = FALSE)
+      getSymbols(slist[as.numeric(input$select)],
+                getOption("getSymbols.env"),
+                src = "FRED",
+                auto.assign = FALSE)
     })
     
     finalInput <- reactive({
