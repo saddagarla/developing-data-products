@@ -1,4 +1,5 @@
 library(shiny)
+require(markdown)
 
 shinyUI(navbarPage("Economic Data Visualizer",
   tabPanel("Plot",
